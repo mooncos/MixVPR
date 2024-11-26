@@ -65,8 +65,8 @@ class VPRModel(pl.LightningModule):
         
         self.save_hyperparameters() # write hyperparams into a file
         
-        self.loss_fn = utils.get_loss(loss_name)
-        self.miner = utils.get_miner(miner_name, miner_margin)
+        self.loss_fn = get_loss(loss_name)
+        self.miner = get_miner(miner_name, miner_margin)
         self.batch_acc = [] # we will keep track of the % of trivial pairs/triplets at the loss level 
 
         self.faiss_gpu = faiss_gpu
@@ -207,7 +207,7 @@ class VPRModel(pl.LightningModule):
 
             r_list = feats[ : num_references]
             q_list = feats[num_references : ]
-            pitts_dict = utils.get_validation_recalls(r_list=r_list, 
+            pitts_dict = get_validation_recalls(r_list=r_list, 
                                                 q_list=q_list,
                                                 k_values=[1, 5, 10, 15, 20, 50, 100],
                                                 gt=positives,
