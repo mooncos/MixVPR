@@ -2,10 +2,10 @@ import pytorch_lightning as pl
 import torch
 from pytorch_lightning.callbacks import Callback, ModelCheckpoint
 from torch.optim import lr_scheduler, optimizer
-import utils
+from .utils import get_loss, get_miner, get_validation_recalls
 
-from dataloaders.GSVCitiesDataloader import GSVCitiesDataModule
-from models import helper
+from .dataloaders.GSVCitiesDataloader import GSVCitiesDataModule
+from .models import helper
 
 
 class VPRModel(pl.LightningModule):
